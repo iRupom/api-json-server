@@ -10,15 +10,35 @@
 
 <body>
   <h1>This is my playground with JSON</h1>
-  <script>
-    const user = {
-      id: 12,
-      name: 'Rakib Talukder',
-      home: 'Sirajganj'
-    };
+  <ul id="user-list">
 
-    const userJSON = JSON.stringify(user);
-    console.log(userJSON);
+  </ul>
+  <script>
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => response.json())
+      .then(json => displayUser(json));
+
+    function displayUser(users) {
+      const userNames = users.map(user => user.username);
+      const parent = document.getElementById('user-list');
+
+      // creating list item using each user name
+
+      for (let i = 0; i < userNames.length; i++) {
+        userName = userNames[i];
+        let item = document.createElement('li');
+        li.innerText = userName;
+        parent.appendChild(item);
+      }
+    }
+    // const user = {
+    //   id: 12,
+    //   name: 'Rakib Talukder',
+    //   home: 'Sirajganj'
+    // };
+
+    // const userJSON = JSON.stringify(user);
+    // console.log(userJSON);
   </script>
 </body>
 
